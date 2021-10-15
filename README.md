@@ -13,8 +13,9 @@ xcode-select --install
 brew install libtool autoconf automake
 git clone -b hmc-clock https://github.com/beagle-dev/beagle-lib.git
 cd beagle-lib
-./autogen.sh
-./configure --without-opencl --without-cuda
+mkdir build
+cd build
+cmake -DBUILD_CUDA=OFF -DBUILD_OPENCL=OFF ..
 sudo make install
 ```
 
@@ -25,8 +26,9 @@ For Linux users, the commands are similar.
 sudo apt-get install build-essential autoconf automake libtool git pkg-config openjdk-9-jdk
 git clone -b hmc-clock https://github.com/beagle-dev/beagle-lib.git
 cd beagle-lib
-./autogen.sh
-./configure --without-opencl --without-cuda
+mkdir build
+cd build
+cmake -DBUILD_CUDA=OFF -DBUILD_OPENCL=OFF ..
 sudo make install
 ```
 
