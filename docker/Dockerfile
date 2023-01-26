@@ -19,7 +19,7 @@ make install && \
 apt-get autoremove && apt-get autoclean
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 WORKDIR /tmp
-RUN echo 'alias beast="java -jar ../app/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off"' >> ~/.bashrc
+RUN echo 'alias beast="java -jar ../app/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -force_resume"' >> ~/.bashrc
 EXPOSE 3000
 
 
