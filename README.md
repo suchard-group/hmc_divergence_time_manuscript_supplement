@@ -1,7 +1,128 @@
 # Scalable Bayesian divergence time estimation with ratio transformations
 This repository contains the instructions and files to reproduce the analyses performed in the "Scalable Bayesian divergence time estimation with ratio transformations" paper by Ji et al.
 
-### Setting up BEAGLE
+We provide two ways for users to setup software to reproduce our results.
+Please kindly refer to the section `Docker image` if you'd like to run BEAST within docker container which is local and should not disturb your other BEAST installations.
+Please kindly refer to the section `Global installation` if you'd like to install BEAST and BEAGLE gloably which could potentially interfere with your other BEAST installations.
+You could find a separate `Reproducing the analyses` section under each installation method to follow.
+### Docker image
+We provide a docker image to streamline software setup.
+To build the docker image, please run
+```
+docker build --platform x86_64 -t beast docker
+```
+
+#### Reproducing the analyses
+
+You may use the following commands for each case of the three data sets as described in the manuscript.
+
+Let's move to this git repo and open an interactive bash session under docker container.
+
+```
+cd where_this_repository_is_stored
+docker run --mount type=bind,src="$(pwd)",target=/tmp -it beast bash
+```
+
+To run each of the analysis, please use the corresponding command below in the interactive bash shell.
+
+#### West Nile Virus
+
+* "time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/WNV/WNV_skyline_onlyHeights_HMC_save -overwrite xmls/WNV/WNV_Skyline_onlyHeights_HMC.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/WNV/WNV_skyline_onlyHeights_Serial_save -overwrite xmls/WNV/WNV_skyline_onlyHeight_Univariable.xml
+	```
+
+* "rate & time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/WNV/WNV_skyline_rateNTime_HMC_save -overwrite xmls/WNV/WNV_Skyline_rateNTime_only_HMC.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/WNV/WNV_skyline_rateNTime_Serial_save -overwrite xmls/WNV/WNV_skyline_rateNTime_Univariable.xml
+	```
+
+#### Rabies virus
+
+* "time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/RRV/RABV_Exp_onlyHeights_HMC_save -overwrite xmls/RRV/RacRABV_Exp_onlyHeights_HMC.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/RRV/RABV_Exp_onlyHeights_Univariable_save -overwrite xmls/RRV/RacRABV_Exp_onlyHeights_Univariable.xml
+	```
+
+* "rate & time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/RRV/RABV_Exp_HMC_rateNtime_save -overwrite xmls/RRV/RacRABV_Exp_rateNTime_HMC.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/RRV/RABV_Exp_rateNTime_Univariable_save -overwrite xmls/RRV/RacRABV_Exp_rateNTime_Univariable.xml
+	```
+
+#### Lassa Virus
+
+* "time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/Lassa/Lassa_skygrid_onlyHeights_HMC_save -overwrite xmls/Lassa/Lassa_S_skygrid_onlyHeights_HMC.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/Lassa/Lassa_skygrid_onlyHeights_Univariable_save -overwrite xmls/Lassa/Lassa_S_skygrid_onlyHeights_Univariable.xml
+	```
+
+* "rate & time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/Lassa/Lassa_skygrid_rateNTime_HMC_save -overwrite xmls/Lassa/Lassa_S_skygrid_rateNTime_HMC.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/Lassa/Lassa_skygrid_rateNTime_Univariable_save -overwrite xmls/Lassa/Lassa_S_skygrid_rateNTime_Univariable.xml
+	```
+
+
+#### Ebola Virus
+
+
+* HMC
+
+```
+	beast -seed 666 -overwrite xmls/EVD/ebov_HMC_all.xml
+```
+
+
+### Global installations
+
+####Setting up BEAGLE
 Please follow the [BEAGLE installation instructions](https://github.com/beagle-dev/beagle-lib).
 But get the `hmc-clock` branch.
 
@@ -12,6 +133,7 @@ Follow the [instructions](https://github.com/beagle-dev/beagle-lib) if you need 
 xcode-select --install
 brew install libtool autoconf automake
 git clone -b hmc-clock https://github.com/beagle-dev/beagle-lib.git
+git checkout 1b31012fb1a7823d51f15ecfc9ad6892fd25469b
 cd beagle-lib
 mkdir build
 cd build
@@ -25,6 +147,7 @@ For Linux users, the commands are similar.
 ```
 sudo apt-get install build-essential autoconf automake libtool git pkg-config openjdk-9-jdk
 git clone -b hmc-clock https://github.com/beagle-dev/beagle-lib.git
+git checkout 1b31012fb1a7823d51f15ecfc9ad6892fd25469b
 cd beagle-lib
 mkdir build
 cd build
@@ -37,13 +160,14 @@ The libraries are installed into `/usr/local/lib`.
 You can find them by `ls /usr/local/lib/*beagle*`.
 
 
-### Setting up BEAST
+#### Setting up BEAST
 
 The following commands will compile the `hmc-clock` branch of BEAST.
 
 ```
 git clone -b hmc-clock https://github.com/beast-dev/beast-mcmc.git
 cd beast-mcmc
+git checkout 3a14740bdb39f7249e387785e689fbda6ba758c2
 ant
 ```
 
@@ -53,7 +177,7 @@ For Linux users, you can install ant by `sudo apt-get install ant`.
 
 This will compile the `jar` files under `beast-mcmc/build/dist/` where you can find `beast.jar`, `beauti.jar` and `trace.jar`.
 
-### Reproducing the analyses
+#### Reproducing the analyses
 
 You may use the following commands for each case of the three data sets as described in the manuscript.
 
@@ -152,6 +276,7 @@ cd where_you_want_to_save_results
 
 
 * HMC
-	```
+
+```
 	java -jar -Djava.library.path=/usr/local/lib where_beast_is_git_cloned/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -seed 666 -overwrite where_this_repository_is_stored/xmls/EVD/ebov_HMC_all.xml
-	```
+```
