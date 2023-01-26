@@ -7,19 +7,24 @@ Please kindly refer to the section `Global installation` if you'd like to instal
 You could find a separate `Reproducing the analyses` section under each installation method to follow.
 ### Docker image
 We provide a docker image to streamline software setup.
-To build the docker image, please run
+To build the docker image for `x86_64` systems (e.g. Intel/AMD chips), please run
 ```
+cd where_this_repository_is_stored
 docker build --platform x86_64 -t beast docker
+```
+To build the docker image for `arm_64` systems (e.g. Apple silicon chips), please run
+```
+cd where_this_repository_is_stored
+docker build --platform ARM64 -t beast docker
 ```
 
 #### Reproducing the analyses
 
 You may use the following commands for each case of the three data sets as described in the manuscript.
 
-Let's move to this git repo and open an interactive bash session under docker container.
+Let's open an interactive bash session under docker container.
 
 ```
-cd where_this_repository_is_stored
 docker run --mount type=bind,src="$(pwd)",target=/tmp -it beast bash
 ```
 
