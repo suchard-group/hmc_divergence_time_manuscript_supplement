@@ -124,6 +124,35 @@ To run each of the analysis, please use the corresponding command below in the i
 	beast -seed 666 -overwrite xmls/EVD/ebov_HMC_all.xml
 ```
 
+#### Algae
+
+* "time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/Algae/algae_hmc_onlyHeight_save -overwrite xmls/Algae/Algae_HMC_onlyHeight.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/Algae/algae_univariate_onlyHeight_save -overwrite xmls/Algae/Algae_univariate_onlyHeight.xml
+	```
+
+* "rate & time" scenario
+	* HMC
+
+	```
+	beast -load_state xmls/Algae/algae_hmc_rateNTime_save -overwrite xmls/Algae/Algae_HMC_rateNTime.xml
+	```
+
+	* Univariable
+
+	```
+	beast -load_state xmls/Algae/algae_univariate_rateNTime_save -overwrite xmls/Algae/Algae_univariate_rateNTime.xml
+	```
+
+
 
 ### Global installations
 
@@ -285,3 +314,32 @@ cd where_you_want_to_save_results
 ```
 	java -jar -Djava.library.path=/usr/local/lib where_beast_is_git_cloned/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -seed 666 -overwrite where_this_repository_is_stored/xmls/EVD/ebov_HMC_all.xml
 ```
+
+
+#### Algae
+
+* "time" scenario
+	* HMC
+
+	```
+	java -jar -Djava.library.path=/usr/local/lib where_beast_is_git_cloned/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -load_state where_this_repository_is_stored/xmls/Algae/algae_hmc_onlyHeight_save -overwrite where_this_repository_is_stored/xmls/Algae/Algae_HMC_onlyHeight.xml
+	```
+
+	* Univariable
+
+	```
+	java -jar -Djava.library.path=/usr/local/lib where_beast_is_git_cloned/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -load_state where_this_repository_is_stored/xmls/Algae/algae_univariate_onlyHeight_save -overwrite where_this_repository_is_stored/xmls/Algae/Algae_univariate_onlyHeight.xml
+	```
+
+* "rate & time" scenario
+	* HMC
+
+	```
+	java -jar -Djava.library.path=/usr/local/lib where_beast_is_git_cloned/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -load_state where_this_repository_is_stored/xmls/Algae/algae_hmc_rateNTime_save -overwrite where_this_repository_is_stored/xmls/Algae/Algae_HMC_rateNTime.xml
+	```
+
+	* Univariable
+
+	```
+	java -jar -Djava.library.path=/usr/local/lib where_beast_is_git_cloned/beast-mcmc/build/dist/beast.jar -beagle_CPU -beagle_SSE_off -load_state where_this_repository_is_stored/xmls/Algae/algae_univariate_rateNTime_save -overwrite where_this_repository_is_stored/xmls/Algae/Algae_univariate_rateNTime.xml
+	```
