@@ -167,7 +167,7 @@ Follow the [instructions](https://github.com/beagle-dev/beagle-lib) if you need 
 xcode-select --install
 brew install libtool autoconf automake
 git clone -b hmc-clock https://github.com/beagle-dev/beagle-lib.git
-git checkout 1b31012fb1a7823d51f15ecfc9ad6892fd25469b
+git checkout 3bdb30bd645e15983f8c8cf952564813e306ad83
 cd beagle-lib
 mkdir build
 cd build
@@ -181,7 +181,7 @@ For Linux users, the commands are similar.
 ```
 sudo apt-get install build-essential autoconf automake libtool git pkg-config openjdk-9-jdk
 git clone -b hmc-clock https://github.com/beagle-dev/beagle-lib.git
-git checkout 1b31012fb1a7823d51f15ecfc9ad6892fd25469b
+git checkout 3bdb30bd645e15983f8c8cf952564813e306ad83
 cd beagle-lib
 mkdir build
 cd build
@@ -201,7 +201,7 @@ The following commands will compile the `hmc-clock` branch of BEAST.
 ```
 git clone -b hmc-clock https://github.com/beast-dev/beast-mcmc.git
 cd beast-mcmc
-git checkout 3a14740bdb39f7249e387785e689fbda6ba758c2
+git checkout 17da204e2d9bdadb6c8284fd092413054f161bdc
 ant
 ```
 
